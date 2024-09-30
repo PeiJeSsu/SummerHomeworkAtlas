@@ -2,11 +2,8 @@
 # Build stage
 #
 FROM maven:3.9.9-eclipse-temurin-17-alpine AS build
-
-COPY pom.xml /home/app
-RUN mvn -f /home/app/pom.xml dependency:resolve
-
 COPY src /home/app/src
+COPY pom.xml /home/app
 RUN mvn -f /home/app/pom.xml clean package -DskipTests
 
 #
